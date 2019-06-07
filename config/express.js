@@ -10,22 +10,17 @@ const cors = require('cors');
 let path   = require('path');
 let helmet = require('helmet');
 let logger = require('morgan');
-let config = require('./index');
 
 module.exports = function (app) {
 
     // use helmet
     app.use(helmet());
 
-    // view engine setup
-    app.set('views', config.root + '/views');
-    app.set('view engine', 'jade');
-
     app.use(logger('dev'));
     app.use(express.json());
     app.use(express.urlencoded({extended: false}));
     app.use(cookieParser());
-    app.use(express.static(config.root + '/public'));
+    app.use(express.static(path.join(__dirname, '..') + '/public'));
 
     // enabling cors
     app.use(cors());
