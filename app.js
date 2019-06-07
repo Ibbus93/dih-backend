@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 /** Export of app, passport and the right configuration **/
-module.exports = { app };
+module.exports = app;
 
 /** Configuration of express and routes **/
 require('./config/express')(app);

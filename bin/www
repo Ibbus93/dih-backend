@@ -4,10 +4,8 @@
  * Module dependencies.
  */
 
-let app = require('../app').app;
-let debug = require('debug')('doutdes-core:server');
+let app = require('../app');
 let http = require('http');
-let fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
