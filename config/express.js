@@ -12,11 +12,7 @@ let helmet = require('helmet');
 let logger = require('morgan');
 let config = require('./index');
 
-module.exports = function (app, passport) {
-
-    // use passport
-    app.use(passport.initialize());
-    app.use(passport.session());
+module.exports = function (app) {
 
     // use helmet
     app.use(helmet());
