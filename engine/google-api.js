@@ -1,4 +1,7 @@
 'use strict';
+
+const _ = require('lodash');
+const moment = require('moment');
 const {google} = require('googleapis');
 const Request = require('request-promise');
 const HttpStatus = require('http-status-codes');
@@ -28,17 +31,11 @@ const DIMENSIONS = {
 const SORT = {
     PAGE_VIEWS_DESC: '-ga:pageviews'
 };
-// const FILTER = {
-//     SESSIONS_GT_1: 'ga:sessions>1',
-//     SESSIONS_GT_5: 'ga:sessions>5',
-//     PAGE_LOAD_TIME_GT_0: 'ga:pageLoadTime>0'
-// };
-
-const config = {
-    "refresh_token": '',
-    "view_id": '',
-    "client_id": '',
-    "client_secret": '',
+const CONFIG = {
+    "refresh_token": "1/ytPwEtCv8L7nohqBvdyz6J08kVWfbzlZj7zYxLVoLPM",
+    "view_id": 148300250,
+    "client_id" : "958672078442-oj196jlgdvp1omiaupersad1ij42ji1i.apps.googleusercontent.com",
+    "client_secret": "97Q15SlQYrQN4oqv9tsF04JY",
 };
 
 const setMetrics = (metrics, dimensions, sort = null, filters = null) => {
@@ -51,15 +48,14 @@ const setMetrics = (metrics, dimensions, sort = null, filters = null) => {
     }
 };
 
-// TODO create new app GA
 const getAccessToken = async () => {
     const options = {
         method: 'POST',
         uri: 'https://www.googleapis.com/oauth2/v4/token',
         qs: {
-            client_id: config.client_id,
-            client_secret: config.client_secret,
-            refresh_token: config.refresh_token,
+            client_id: CONFIG.client_id,
+            client_secret: CONFIG.client_secret,
+            refresh_token: CONFIG.refresh_token,
             grant_type: 'refresh_token'
         }
     };
@@ -72,7 +68,7 @@ const getApiData = async (metrics, dimensions, sort = null, filters = null) => {
 
     let params = {
         'access_token': access_token,
-        'ids': 'ga:' + config.view_id,
+        'ids': 'ga:' + CONFIG.view_id,
         'start-date': '90daysAgo',
         'end-date': 'today',
         'metrics': metrics,
@@ -91,6 +87,7 @@ const ga_getData = async (req, res) => {
 
     try {
         data = await getApiData(req.metrics, req.dimensions, req.sort, req.filters);
+        data = _.map(data, el => [new Date(moment.utc(el[0])), parseInt(el[1], 10)]);
 
         return res.status(HttpStatus.OK).send(data);
     } catch (err) {
@@ -110,4 +107,4 @@ const ga_getData = async (req, res) => {
 };
 
 /** EXPORTS **/
-module.exports = {ga_getData, setMetrics, METRICS, DIMENSIONS, SORT}; //, FILTER};
+module.exports = {ga_getData, setMetrics, METRICS, DIMENSIONS, SORT};
