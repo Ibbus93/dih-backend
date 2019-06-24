@@ -1,9 +1,9 @@
 # Digital Innovation Hub - Finance: back-end example
 
-In this repository there is an easy back-end project to guide the followers of the course [Digital Innovation Hub - Finance](https://www.eventbrite.it/e/biglietti-orientarsi-al-digitale-finance-20-e-27-giugno-4-e-12-luglio-2019-62911384645?ref=estw). 
+In this repository there is an easy back-end project to show to the followers of the course [Digital Innovation Hub - Finance](https://www.eventbrite.it/e/biglietti-orientarsi-al-digitale-finance-20-e-27-giugno-4-e-12-luglio-2019-62911384645?ref=estw) an example of a RESTful back-end service. 
 
 ## Description of the project
-The project allows to request some Google Analytics data, regarding the last 90 days, using Google APIs. The GET APIs exposed, that return day by day data concerning a website, are the following:
+The project allows to request some Google Analytics data, regarding the last 90 days, using Google APIs. The GET APIs exposed, that return day by day data about a website, can be found in the file [config/routes.js](https://github.com/Ibbus93/dih-backend/blob/master/config/routes.js). A briefly description of the routes is the following:
 - **sessioni**: number of sessions;
 - **visualizzazioni**: number of page views;
 - **paginePiuViste**: most visited pages, in descending order;
@@ -13,7 +13,7 @@ The project allows to request some Google Analytics data, regarding the last 90 
 More informations about Google Analytics metrics can be found [here](https://developers.google.com/analytics/devguides/reporting/core/dimsmets).
 
 ## Project structure
-The structure is basically the following:
+The main structure is basically the following:
 - **bin/www**: configuration of the HTTP web server;
 - **app.js**: creation of the single instance of express and initialization of configuration;
 - **config/express.js**: basic express configuration;
