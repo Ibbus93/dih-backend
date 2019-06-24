@@ -20,6 +20,20 @@ The main structure is basically the following:
 - **config/routes.ts**: definition of routes of the service;
 - **engine/google-api.js**: methods to request resources to Google Analytics API.
 
+## How to execute the project
+First of all, clone the project:
+```
+git clone https://github.com/Ibbus93/dih-backend.git
+```
+Then, go to the folder created and install the dipendencies. Finally, start the service:
+
+```
+cd dih-backend/
+npm install
+npm start
+```
+The service will be run on the port 3000.
+
 ## Technologies
 This project is written primarily using the following technologies and libraries:
 
