@@ -5,15 +5,13 @@ const GAS = require('../engine/google-api').SORT;
 
 module.exports = function (app) {
 
-    /* PATHs */
-    const indexPath = "/";
-
     /****************** GOOGLE MANAGER ********************/
-    app.get(indexPath + 'sessioni/', GA.setMetrics(GAM.SESSIONS, GAD.DATE), GA.ga_getData);
-    app.get(indexPath + 'visualizzazioni/', GA.setMetrics(GAM.PAGE_VIEWS, GAD.DATE), GA.ga_getData);
-    app.get(indexPath + 'paginePiuViste/', GA.setMetrics(GAM.PAGE_VIEWS, GAD.PAGE_DATE, GAS.PAGE_VIEWS_DESC), GA.ga_getData);
-    app.get(indexPath + 'utenti/', GA.setMetrics(GAM.USERS, GAD.DATE), GA.ga_getData);
-    app.get(indexPath + 'visualizzazioniPerStato/', GA.setMetrics(GAM.PAGE_VIEWS, GAD.COUNTRY_DATE), GA.ga_getData);
+    app.get('/sessioni/', GA.setMetrics(GAM.SESSIONS, GAD.DATE), GA.ga_getData);
+    app.get('/visualizzazioni/', GA.setMetrics(GAM.PAGE_VIEWS, GAD.DATE), GA.ga_getData);
+    app.get('/paginePiuViste/', GA.setMetrics(GAM.PAGE_VIEWS, GAD.PAGE_DATE, GAS.PAGE_VIEWS_DESC), GA.ga_getData);
+    app.get('/utenti/', GA.setMetrics(GAM.USERS, GAD.DATE), GA.ga_getData);
+    app.get('/visualizzazioniPerStato/', GA.setMetrics(GAM.PAGE_VIEWS, GAD.COUNTRY_DATE), GA.ga_getData);
+
 
     /****************** ERROR HANDLER ********************/
     app.use((req, res) => {
